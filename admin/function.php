@@ -94,6 +94,13 @@ function wpdocs_my_display_callback() {
             </div>
         </div>
     </div>
+
+    <!-- Layout Template -->
+    <div class="row">
+    <h6>Select Template:</h6>
+        
+    </table>
+    </div>
     <?php
     
 }

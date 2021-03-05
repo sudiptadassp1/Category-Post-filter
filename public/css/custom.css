@@ -1,0 +1,15 @@
+.template1_post_thumb{
+    height: 180px;
+}
+
+.template1_post_card{
+    height: 440px;
+}
+
+.template1_post_row{
+    margin-bottom: 30px;
+}
+.template1_post_card a.btn.btn-warning {
+    position: absolute;
+    bottom: 15px;
+}

@@ -1,0 +1,26 @@
+li#toplevel_page_test-plugin img {
+    width: 22px;
+}
+
+select#root_tagonomy {
+    min-height: 38px;
+    width: 100%;
+}
+
+select#all_post_type{
+    min-height: 38px;
+    width: 100%;
+}
+
+img.post_ajax_loader {
+    height: 35px;
+    display: none;
+}
+
+.shotcode_execute {
+    font-weight: 500;
+    font-size: 15px;
+    background-color: #e4e4e4;
+    padding: 8px 8px;
+    border-radius: 5px;
+}

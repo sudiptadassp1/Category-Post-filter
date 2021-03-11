@@ -24,3 +24,20 @@ img.post_ajax_loader {
     padding: 8px 8px;
     border-radius: 5px;
 }
+
+img.template_sample {
+    width: 100% !important;
+    height: 155px !important;
+    border: solid 2px lightgray !important;
+}
+.row_template {
+    margin: 30px 0 !important;
+}
+
+.row.choose_template_scene input {
+    margin: 0.2rem .25rem 0 0 !important;
+}
+
+.choose_template_scene h6 {
+    font-size: 12px;
+}

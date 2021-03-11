@@ -5,7 +5,7 @@
 ?>
     
     <div class="col-sm-4">
-        <div class="template1_post_card card" style="width: 18rem;">
+        <div class="template1_post_card card" style="width: 100%;">
             <img class="template1_post_thumb" src="<?php echo the_post_thumbnail_url('post-medium') ?>" alt="">
             <div class="card-body">
                 <h5 class="card-title"><?php the_title(); ?></h5>

@@ -11,8 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $GLOBALS['postname'] = '';
 
-add_action( 'init', 'global_var' );
-
 register_activation_hook( __FILE__, 'get_category_name' );
 require_once('admin/function.php');
 require_once('admin/create_post.php');
@@ -68,7 +66,7 @@ function get_excerpt(){
   $excerpt = preg_replace(" ([.*?])",'',$excerpt);
   $excerpt = strip_shortcodes($excerpt);
   $excerpt = strip_tags($excerpt);
-  $excerpt = substr($excerpt, 0, 100);
+  $excerpt = substr($excerpt, 0, 70);
   $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
   $excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
   

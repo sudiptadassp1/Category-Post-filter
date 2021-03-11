@@ -46,6 +46,7 @@
             )
         );
         $query = new WP_Query( $args );
+        print_r($query);
       
         $post_count = 3;
         echo "<div class='container'>";

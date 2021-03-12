@@ -18,6 +18,9 @@ require_once('public/function.php');
 
 
 function register_common_scripts_style(){
+  wp_register_script('jquery-script', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js', null, false);
+  wp_enqueue_script('jquery-script');
+
   wp_register_script('bootstrap-script', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js', null, true);
   wp_enqueue_script('bootstrap-script');
 

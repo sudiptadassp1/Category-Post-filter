@@ -74,39 +74,41 @@ function wpdocs_my_display_callback() {
 
     <!-- Select template block -->
     <h6>Select template:</h6>
-    <div class="row row_template choose_template_scene">
-        <div class="col-sm-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="template_1">
-                <h6>Template 1</h6>
-                <img class="template_sample" src="<?php echo plugins_url('img/template1.png', __FILE__); ?>" alt="">
+    <from id="radio_button_group">
+        <div class="row row_template choose_template_scene">
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="temp_1" name="temp">
+                    <h6>Template 1</h6>
+                    <img class="template_sample" src="<?php echo plugins_url('img/template1.png', __FILE__); ?>" alt="">
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="template_2">
-                <h6>Template 2</h6>
-                <img class="template_sample" src="<?php echo plugins_url('img/template2.png', __FILE__); ?>" alt="">
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="temp_2" name="temp">
+                    <h6>Template 2</h6>
+                    <img class="template_sample" src="<?php echo plugins_url('img/template2.png', __FILE__); ?>" alt="">
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="template_3">
-                <h6>Template 3</h6>
-                <img class="template_sample" src="<?php echo plugins_url('img/template3.png', __FILE__); ?>" alt="">
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="temp_3" name="temp">
+                    <h6>Template 3</h6>
+                    <img class="template_sample" src="<?php echo plugins_url('img/template3.png', __FILE__); ?>" alt="">
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="template_4">
-                <h6>Template 4</h6>
-                <img class="template_sample" src="<?php echo plugins_url('img/template4.png', __FILE__); ?>" alt="">
+            <div class="col-sm-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="temp_4" name="temp">
+                    <h6>Template 4</h6>
+                    <img class="template_sample" src="<?php echo plugins_url('img/template4.png', __FILE__); ?>" alt="">
+                </div>
             </div>
         </div>
-    </div>
+    </from>
 
     <!-- Generate Shortcode button -->
     <div class="row row_template">
@@ -136,13 +138,6 @@ function wpdocs_my_display_callback() {
             </div>
         </div>
     </div>
-
-    <!-- Layout Template -->
-    <div class="row">
-    <h6>Select Template:</h6>
-        
-    </table>
-    </div>
     <?php
     
 }
@@ -165,23 +160,10 @@ function generate_shortcode_function(){
     $ajax_get_post_type = $_REQUEST['posts_slug'];
     $ajax_get_taxonomy = $_REQUEST['tax_slug'];
     $post_id_url = $_REQUEST['uri_post_id'];
-    $post_author_link = $_REQUEST['post author_link'];
+    $template_value = $_REQUEST['template_value'];
     
-    // $GLOBALS['ajax_post_slug'] = $ajax_get_post_type;
-    // $GLOBALS['ajax_taxonomy'] = $ajax_get_taxonomy;
 
-    global $wpdb;
-    $tablename = $wpdb->prefix.'cpc_shortcode_property';
-
-    $data = array(
-        'post_id' => $post_id_url,
-        'post_slug' => $ajax_get_post_type,
-        'category_slug' => $ajax_get_taxonomy,
-    );
-
-    $wpdb->insert( $tablename, $data);
-
-    _e("<span class='shotcode_execute'>[get_category post_type='".$ajax_get_post_type."' taxonomy='".$ajax_get_taxonomy."']</span>");
+    _e("<span class='shotcode_execute'>[get_category post_type='".$ajax_get_post_type."' taxonomy='".$ajax_get_taxonomy."' template='".$template_value."']</span>");
 
     die();
 }

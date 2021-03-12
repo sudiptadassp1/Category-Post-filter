@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
     var taxonomy_slug = jQuery('#hidden_taxonomy_slug').val();
     var post_type_slug = jQuery('#hidden_post_slug').val();
     var template_value = jQuery('#hidden_template_value').val();
-    console.log("template_value");
+    
     get_ajax_result(cat_slug, taxonomy_slug, post_type_slug, template_value);
     jQuery('#c_cat').on('change', function(){
         var cat_slug = jQuery(this).val();

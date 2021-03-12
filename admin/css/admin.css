@@ -27,7 +27,7 @@ img.post_ajax_loader {
 
 img.template_sample {
     width: 100% !important;
-    height: 155px !important;
+    /* height: 155px !important; */
     border: solid 2px lightgray !important;
 }
 .row_template {

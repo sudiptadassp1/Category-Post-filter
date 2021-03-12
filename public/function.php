@@ -2,6 +2,7 @@
     function get_custom_post_function($newtax){     
       $taxname = $newtax['taxonomy'];
       $get_post_slug = $newtax['post_type'];
+      $get_temp_val = $newtax['template'];
       
       $categories = get_terms( array(
           'hide_empty' => false,
@@ -21,6 +22,7 @@
 
         <input id="hidden_taxonomy_slug" type="hidden" value='<?php _e($taxname); ?>'>    
         <input id="hidden_post_slug" type="hidden" value='<?php _e($get_post_slug); ?>'>    
+        <input id="hidden_template_value" type="hidden" value='<?php _e($get_temp_val); ?>'>    
         <hr/>
         <div id="after_ajax_req"></div>
       <?php
@@ -32,6 +34,7 @@
       $get_cat_name = $_POST["category"];
       $get_tax_name = $_POST["taxonomy"];
       $get_post_type_name = $_POST["post_type"];
+      $get_template = $_POST['template_val'];
       if(isset($_POST["category"]) && isset($_POST["category"])){
         $i = 1;
         $args = array(
@@ -46,13 +49,27 @@
             )
         );
         $query = new WP_Query( $args );
-        print_r($query);
-      
+        
         $post_count = 3;
         echo "<div class='container'>";
         if ( $query->have_posts() ) :
           while ( $query->have_posts() ) : $query->the_post();
+          if($get_template == "temp_1")
+          {
             include('template/template1.php');
+          }else if($get_template == "temp_2")
+          {
+            include('template/template2.php');
+          }else if($get_template == "temp_3")
+          {
+            include('template/template3.php');
+          }else if($get_template == "temp_4")
+          {
+            include('template/template4.php');
+          }else{
+            _e("No template Selected. Please select a template.");
+          }
+            
             $post_count++;
           endwhile;
         else :

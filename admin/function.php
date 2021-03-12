@@ -23,7 +23,7 @@
 
 
 function wpdocs_register_meta_boxes() {
-    add_meta_box( 'meta-box-id', __( 'Select Post Type', 'cpc' ), 'wpdocs_my_display_callback', 'post_filter', 'side', 'high' );
+    add_meta_box( 'meta-box-id', __( 'Select Post Type', 'cpc' ), 'wpdocs_my_display_callback', 'post_filter', 'normal', 'high' );
 }
 add_action( 'add_meta_boxes', 'wpdocs_register_meta_boxes' );
  

@@ -11,8 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $GLOBALS['postname'] = '';
 
-add_action( 'init', 'global_var' );
-
 register_activation_hook( __FILE__, 'get_category_name' );
 require_once('admin/function.php');
 require_once('admin/create_post.php');

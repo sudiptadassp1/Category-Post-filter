@@ -19,4 +19,3 @@
     if($post_count%3 == 2){
         echo "</div>";
     }
-?>

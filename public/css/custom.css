@@ -1,7 +1,4 @@
-.template1_post_thumb{
-    height: 180px;
-}
-
+/* Template 1 */
 .template1_post_card{
     height: 440px;
 }
@@ -13,3 +10,7 @@
     position: absolute;
     bottom: 15px;
 }
+
+
+/* Template 2 */
+

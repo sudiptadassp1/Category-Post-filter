@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title"><?php the_title(); ?></h5>
                 <p class="card-text"><?php echo get_excerpt(); ?></p>
-                <a href="<?php get_permalink ?>" class="btn btn-warning">See More</a>
+                <a href="<?php echo get_permalink(); ?>" class="btn btn-warning">See More</a>
             </div>
         </div>
     </div>

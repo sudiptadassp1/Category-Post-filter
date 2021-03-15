@@ -9,7 +9,7 @@
           'taxonomy' => $taxname
         ) 
       );
-       
+
       ?>
         <select name="cat" id="c_cat">
           <option value="">All</option>
@@ -35,6 +35,26 @@
       $get_tax_name = $_POST["taxonomy"];
       $get_post_type_name = $_POST["post_type"];
       $get_template = $_POST['template_val'];
+
+      $get_post_cat_arr = array();
+      //Get the taxomomy
+      if(!$get_cat_name)
+      {
+        $ajax_post_categories = get_terms( array(
+          'hide_empty' => false,
+          'taxonomy' => $get_tax_name
+          ) 
+        );
+
+        foreach($ajax_post_categories as $ajax_post_category){
+          array_push($get_post_cat_arr, $ajax_post_category->term_taxonomy_id);
+        }
+        
+      }else{
+        $get_post_cat_arr = $get_cat_name;
+      }
+
+
       if(isset($_POST["category"]) && isset($_POST["category"])){
         $i = 1;
         $args = array(
@@ -44,42 +64,46 @@
               array(
                   'taxonomy' => $get_tax_name,
                   'field' => 'term_taxonomy_id',
-                  'terms' => $get_cat_name
+                  'terms' => $get_post_cat_arr
               )
             )
         );
         $query = new WP_Query( $args );
         
         $post_count = 3;
-        echo "<div class='container'>";
-        if ( $query->have_posts() ) :
-          while ( $query->have_posts() ) : $query->the_post();
-          if($get_template == "temp_1")
-          {
-            include('template/template1.php');
-          }else if($get_template == "temp_2")
-          {
-            include('template/template2.php');
-          }else if($get_template == "temp_3")
-          {
-            include('template/template3.php');
-          }else if($get_template == "temp_4")
-          {
-            include('template/template4.php');
-          }else{
-            _e("No template Selected. Please select a template.");
-          }
-            
-            $post_count++;
-          endwhile;
-        else :
-            _e( 'Sorry, no posts were found.', 'textdomain' );
+        // echo "<div class=''>";
+        if($get_template != ""):
+          if ( $query->have_posts() ) :
+            while ( $query->have_posts() ) : $query->the_post();
+            if($get_template == "temp_1")
+            {
+              include('template/template1.php');
+            }else if($get_template == "temp_2")
+            {
+              include('template/template2.php');
+            }else if($get_template == "temp_3")
+            {
+              include('template/template3.php');
+            }else if($get_template == "temp_4")
+            {
+              include('template/template4.php');
+            }else{
+              _e("Worng template Selected. Please check again");
+            }
+              
+              $post_count++;
+            endwhile;
+          else :
+              _e( 'Sorry, no posts were found.', 'textdomain' );
+          endif;
+        else:
+          _e("No template Selected. Please select a template.");
         endif;
         die();
       }else{
         _e("jjjjjjjjj");
       }
-      echo "</div>";
+      // echo "</div>";
     }
 
     function my_must_login() {

@@ -29,6 +29,13 @@ add_action( 'add_meta_boxes', 'wpdocs_register_meta_boxes' );
  
 function wpdocs_my_display_callback() {
     wp_nonce_field( plugins_url( '/function.php',__FILE__ ), 'wpse_our_nonce' );
+    // echo "<pre>";
+    // if(count(get_post_meta(get_the_ID())) > 0){
+    //     print_r(get_post_meta(get_the_ID()));
+    // }else{
+    //     echo "hello";
+    // }
+    
     ?>
     
     <!-- Taxonomy Dropdown -->

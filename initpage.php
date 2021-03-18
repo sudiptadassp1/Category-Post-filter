@@ -18,6 +18,9 @@ require_once('public/function.php');
 
 
 function register_common_scripts_style(){
+  wp_register_script('jquery-script', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js', null, false);
+  wp_enqueue_script('jquery-script');
+
   wp_register_script('bootstrap-script', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js', null, true);
   wp_enqueue_script('bootstrap-script');
 
@@ -66,7 +69,7 @@ function get_excerpt(){
   $excerpt = preg_replace(" ([.*?])",'',$excerpt);
   $excerpt = strip_shortcodes($excerpt);
   $excerpt = strip_tags($excerpt);
-  $excerpt = substr($excerpt, 0, 100);
+  $excerpt = substr($excerpt, 0, 70);
   $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
   $excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
   

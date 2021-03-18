@@ -14,7 +14,7 @@ function get_ajax_result_for_post(post_slug){
     }) 
 }
 
-function generate_shortcode(posts_slug, tax_slug, uri_post_id){
+function generate_shortcode(posts_slug, tax_slug, uri_post_id, template_val){
     jQuery.ajax({
         type : "post",
         url : post_ajax.ajax_url,
@@ -22,7 +22,8 @@ function generate_shortcode(posts_slug, tax_slug, uri_post_id){
             action: "generate_shortcode", 
             posts_slug: posts_slug,
             tax_slug: tax_slug,
-            uri_post_id: uri_post_id
+            uri_post_id: uri_post_id,
+            template_value: template_val
         },
         beforeSend: function(){
             jQuery('img.post_ajax_loader').show();
@@ -45,11 +46,18 @@ jQuery(document).ready(function(){
         get_ajax_result_for_post(post_slug);
     })
 
+    //Get Template value
+    var template_value;
+    jQuery("#radio_button_group .form-check-input").on('click', function(){
+        template_value = jQuery(this).val(); 
+     });
+
     //Generate shortcode
     jQuery('.shortcode_gernerate_btn').on('click', function(){
         var uri_post_id = jQuery('#post_ID').val();
         var posts_slug = jQuery('#all_post_type').val();
         var tax_slug = jQuery('#root_tagonomy').val();
-        generate_shortcode(posts_slug, tax_slug, uri_post_id);
+        var template_val = template_value;
+        generate_shortcode(posts_slug, tax_slug, uri_post_id, template_val);
     });
 });

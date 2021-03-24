@@ -135,7 +135,8 @@ function wpdocs_my_display_callback() {
                 <div class="shortcode_panel text-center">
                     <?php
                     if(count(get_post_meta(get_the_ID())) > 0){
-                        _e("<span class='shotcode_execute'>[get_category post_type='".$cptposttype."' taxonomy='".$cpttaxonomy."' template='".$cpttemplatevalue."']</span>");
+                        // _e("<span class='shotcode_execute'>[get_category post_type='".$cptposttype."' taxonomy='".$cpttaxonomy."' template='".$cpttemplatevalue."']</span>");
+                        _e("<span class='shotcode_execute'>[get_category id='".get_the_ID()."']</span>");
                     } 
                     ?>
                 </div>
@@ -163,11 +164,11 @@ function set_post_type_func(){
 function generate_shortcode_function(){
     $ajax_get_post_type = $_REQUEST['posts_slug'];
     $ajax_get_taxonomy = $_REQUEST['tax_slug'];
-    $post_id_url = $_REQUEST['uri_post_id'];
+    $post_id_uri = $_REQUEST['uri_post_id'];
     $template_value = $_REQUEST['template_value'];
     
 
-    _e("<span class='shotcode_execute'>[get_category post_type='".$ajax_get_post_type."' taxonomy='".$ajax_get_taxonomy."' template='".$template_value."']</span>");
+    _e("<span class='shotcode_execute'>[get_category post_type='".$post_id_uri."']</span>");
 
     die();
 }

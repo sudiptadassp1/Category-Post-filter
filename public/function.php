@@ -1,31 +1,51 @@
 <?php
-    function get_custom_post_function($newtax){     
-      $taxname = $newtax['taxonomy'];
-      $get_post_slug = $newtax['post_type'];
-      $get_temp_val = $newtax['template'];
-      
-      $categories = get_terms( array(
-          'hide_empty' => false,
-          'taxonomy' => $taxname
-        ) 
-      );
-
-      ?>
-        <select name="cat" id="c_cat">
-          <option value="">All</option>
-        <?php
-          foreach($categories as $cartegoty){
-            _e("<option value='".$cartegoty->term_taxonomy_id."'>".$cartegoty->name."</option>");
-          }
+    function get_custom_post_function($newtax){  
+      $get_post_id =  $newtax['id'];
+      $taxname;
+      $get_post_slug;
+      $get_temp_val;
+      global $wpdb;
+      $prefix = $wpdb->prefix."postmeta";
+      $results = $wpdb->get_results( "SELECT * FROM $prefix where post_id = $get_post_id" );
+      if(count($results) > 0){
+        foreach($results as $result){
+          if($result->meta_key  == "cpc_post_podt_type"){
+            $get_post_slug = $result->meta_value;
+          }else if($result->meta_key  == "cpc_taxonomy"){
+            $taxname = $result->meta_value;
+          }else if($result->meta_key  == "temp"){
+            $get_temp_val = $result->meta_value;
+          } 
+        }
+        
+        
+        $categories = get_terms( array(
+            'hide_empty' => false,
+            'taxonomy' => $taxname
+          ) 
+        );
+  
         ?>
-        </select>
-
-        <input id="hidden_taxonomy_slug" type="hidden" value='<?php _e($taxname); ?>'>    
-        <input id="hidden_post_slug" type="hidden" value='<?php _e($get_post_slug); ?>'>    
-        <input id="hidden_template_value" type="hidden" value='<?php _e($get_temp_val); ?>'>    
-        <hr/>
-        <div id="after_ajax_req"></div>
-      <?php
+          <select name="cat" id="c_cat">
+            <option value="">All</option>
+          <?php
+            foreach($categories as $cartegoty){
+              _e("<option value='".$cartegoty->term_taxonomy_id."'>".$cartegoty->name."</option>");
+            }
+          ?>
+          </select>
+  
+          <input id="hidden_taxonomy_slug" type="hidden" value='<?php _e($taxname); ?>'>    
+          <input id="hidden_post_slug" type="hidden" value='<?php _e($get_post_slug); ?>'>    
+          <input id="hidden_template_value" type="hidden" value='<?php _e($get_temp_val); ?>'>    
+          <hr/>
+          <div id="after_ajax_req"></div>
+        <?php
+      }else{
+        _e("No Filter Found");
+      }
+      
+      
     }
     add_shortcode('get_category', 'get_custom_post_function');
 

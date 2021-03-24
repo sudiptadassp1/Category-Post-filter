@@ -8,7 +8,7 @@ function cpc_save_meta_box( $post_id ) {
     $fields = [
         'cpc_post_podt_type',
         'cpc_taxonomy',
-        'layout',
+        'temp',
     ];
     foreach ( $fields as $field ) {
         if ( array_key_exists( $field, $_POST ) ) {

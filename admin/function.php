@@ -29,12 +29,14 @@ add_action( 'add_meta_boxes', 'wpdocs_register_meta_boxes' );
  
 function wpdocs_my_display_callback() {
     wp_nonce_field( plugins_url( '/function.php',__FILE__ ), 'wpse_our_nonce' );
-    // echo "<pre>";
-    // if(count(get_post_meta(get_the_ID())) > 0){
-    //     print_r(get_post_meta(get_the_ID()));
-    // }else{
-    //     echo "hello";
-    // }
+    if(count(get_post_meta(get_the_ID())) > 0){
+        $cptposttype = get_post_meta(get_the_ID())["cpc_post_podt_type"][0];
+        $cpttaxonomy = get_post_meta(get_the_ID())["cpc_taxonomy"][0];
+        $cpttemplatevalue = get_post_meta(get_the_ID())["temp"][0];
+        echo "<input type='hidden' id='hidden_post_type_value' value='".$cptposttype."'>";
+        echo "<input type='hidden' id='hidden_taxonomy_type_value' value='".$cpttaxonomy."'>";
+        echo "<input type='hidden' id='hidden_template_value' value='".$cpttemplatevalue."'>";
+    }
     
     ?>
     
@@ -132,14 +134,9 @@ function wpdocs_my_display_callback() {
                 <img class="post_ajax_loader" src="<?php echo plugins_url('img/post_type_loader.gif', __FILE__); ?>"/>
                 <div class="shortcode_panel text-center">
                     <?php
-                    $get_post_id = get_the_ID();
-                        global $wpdb;
-                            // echo "<pre>";
-                        $result = $wpdb->get_results ( "SELECT * FROM `wp_cpc_shortcode_property` where post_id=$get_post_id" );
-                        foreach($result as $results){
-                            // print_r($results);
-                            _e("<span class='shotcode_execute'>[get_category post_type='".$results->post_slug."' taxonomy='".$results->category_slug."']</span>");
-                        }   
+                    if(count(get_post_meta(get_the_ID())) > 0){
+                        _e("<span class='shotcode_execute'>[get_category post_type='".$cptposttype."' taxonomy='".$cpttaxonomy."' template='".$cpttemplatevalue."']</span>");
+                    } 
                     ?>
                 </div>
             </div>

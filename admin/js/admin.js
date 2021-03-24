@@ -39,6 +39,8 @@ function generate_shortcode(posts_slug, tax_slug, uri_post_id, template_val){
     }) 
 }
 
+
+
 jQuery(document).ready(function(){
     // Get Taxonomy by post
     jQuery('#all_post_type').on('change', function(){
@@ -59,5 +61,33 @@ jQuery(document).ready(function(){
         var tax_slug = jQuery('#root_tagonomy').val();
         var template_val = template_value;
         generate_shortcode(posts_slug, tax_slug, uri_post_id, template_val);
+    });
+
+    var hidden_post_type = jQuery('#hidden_post_type_value').val();
+    var hidden_taxonomy_type = jQuery('#hidden_taxonomy_type_value').val();
+    var hidden_template_type = jQuery('#hidden_template_value').val();
+    
+
+    // Select post type
+    jQuery('#all_post_type option').each(function(i, option){
+        if(option.value == hidden_post_type){
+            option.selected = "selected";
+                jQuery("#all_post_type").change();
+        }
+    });
+
+    //Select Taxonomy type
+    jQuery('#root_tagonomy option').each(function(i, option){
+        if(option.value == hidden_taxonomy_type){
+            option.selected = "selected";
+                jQuery("#root_tagonomy").change();
+        }
+    });   
+
+    // Select template type
+    jQuery('input.form-check-input').each(function(i, input){
+        if(input.value == hidden_template_type){
+            input.checked = "checked";
+        }
     });
 });
